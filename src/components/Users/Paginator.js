@@ -12,8 +12,8 @@ export default class Paginator extends React.Component {
 
   render() {
     const { actualPage, totalItems, itemsPerPage, onPageChange } = this.props;
-    let numberOfpages = totalItems / itemsPerPage;
-    const pages = Array.apply(null, { length: numberOfpages }).map(
+    const numberOfPages = Math.ceil(totalItems / itemsPerPage);
+    const pages = Array.apply(null, { length: numberOfPages }).map(
       Number.call,
       Number
     );
