@@ -61,8 +61,8 @@ class Users extends Component {
       if (filters.age.min) {
         users = users.filter(user => user.age >= filters.age.min);
       }
-      if (filters.age.min) {
-        users = users.filter(user => user.age >= filters.age.min);
+      if (filters.age.max) {
+        users = users.filter(user => user.age <= filters.age.max);
       }
     }
     this.setState(state => ({
