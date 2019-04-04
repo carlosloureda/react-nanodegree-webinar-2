@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
 
-import allUsers from "../../data/users";
+import PropTypes from "prop-types";
 
 export default class UserList extends Component {
+  static propTypes = {
+    users: PropTypes.array.isRequired
+  };
   render() {
-    const users = allUsers.slice(0, 5);
+    const { users } = this.props;
     return (
       <Table striped>
         <thead>
           <tr>
-            {/* <th>#id</th> */}
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
