@@ -6,11 +6,12 @@ export default class Paginator extends React.Component {
   static propTypes = {
     itemsPerPage: PropTypes.number.isRequired,
     totalItems: PropTypes.number.isRequired,
-    actualPage: PropTypes.number.isRequired
+    actualPage: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired
   };
 
   render() {
-    const { actualPage, totalItems, itemsPerPage } = this.props;
+    const { actualPage, totalItems, itemsPerPage, onPageChange } = this.props;
     let numberOfpages = totalItems / itemsPerPage;
     const pages = Array.apply(null, { length: numberOfpages }).map(
       Number.call,
@@ -21,7 +22,9 @@ export default class Paginator extends React.Component {
       <Pagination aria-label="Page navigation">
         {pages.map(page => (
           <PaginationItem active={page === actualPage} key={page}>
-            <PaginationLink>{page + 1}</PaginationLink>
+            <PaginationLink onClick={() => onPageChange(page)}>
+              {page + 1}
+            </PaginationLink>
           </PaginationItem>
         ))}
       </Pagination>

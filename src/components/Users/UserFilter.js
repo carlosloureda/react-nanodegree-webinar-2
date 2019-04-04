@@ -1,54 +1,21 @@
 import React, { Component } from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-
+import PropTypes from "prop-types";
 export default class UserFilter extends Component {
-  state = {
-    filters: {
-      gender: {
-        male: false,
-        female: false,
-        neutral: false,
-        ratherNotSay: false
-      },
-      role: {
-        guest: false,
-        user: false,
-        admin: false,
-        superAdmin: false
-      },
-      age: {
-        min: null,
-        max: null
-      }
-    }
+  static propTypes = {
+    onUserFilter: PropTypes.func.isRequired
   };
-
   onGenderChange = e => {
     const { name, checked } = e.target;
-    this.setState(state => ({
-      gender: {
-        ...state.gender,
-        [name]: checked
-      }
-    }));
+    this.props.onUserFilter("gender", name, checked);
   };
   onRoleChange = e => {
     const { name, checked } = e.target;
-    this.setState(state => ({
-      role: {
-        ...state.role,
-        [name]: checked
-      }
-    }));
+    this.props.onUserFilter("role", name, checked);
   };
   onAgeChange = e => {
     const { name, value } = e.target;
-    this.setState(state => ({
-      age: {
-        ...state.age,
-        [name]: parseInt(value)
-      }
-    }));
+    this.props.onUserFilter("age", name, parseInt(value));
   };
   render() {
     return (
